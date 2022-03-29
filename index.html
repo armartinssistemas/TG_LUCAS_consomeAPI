@@ -6,6 +6,11 @@
     <link rel="stylesheet" type="text/css" href="bs/css/bootstrap.min.css">
     <title>Cadastro de Usuários</title>
     <link rel="manifest" href="manifest.webmanifest">
+     <script type="module">
+       import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+       const el = document.createElement('pwa-update');
+       document.body.appendChild(el);
+    </script>
   </head>
   <body>
     <div class="container">
@@ -23,7 +28,5 @@
     <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="jquery.session.js"></script>
     <script type="text/javascript" src="lib.js"></script>
-    <script type="module" src="pwabuilder-sw-register.js"></script>
-    <script type="module" src="pwabuilder-sw.js"></script>
   </body>
 </html>

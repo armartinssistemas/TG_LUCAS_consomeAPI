@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
 
 	var $endpoint = "13.89.49.82";
 

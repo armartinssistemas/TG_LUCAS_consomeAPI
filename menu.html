@@ -5,15 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="bs/css/bootstrap.min.css">
     <title>Cadastro de Usuários</title>
+    <style type="text/css">
+      .vertical-menu {
+        width: 100%; /* Set a width if you like */
+      }
+
+      .vertical-menu a {
+        background-color: #eee; /* Grey background color */
+        color: black; /* Black text color */
+        display: block; /* Make the links appear below each other */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove underline from links */
+      }
+
+      .vertical-menu a:hover {
+        background-color: #ccc; /* Dark grey background on mouse-over */
+      }
+    </style>
   </head>
   <body>
     <div class="container">
-      <h2><a href="buscarindividual.html">Buscar Registro Individual</a></h2>
-      <h2><a href="buscartodos.html">Buscar Todos</a></h2>
-      <h2><a href="incluir.html">Incluir</a></h2>
-      <h2><a href="alterar.html">Alterar</a></h2>
-      <h2><a href="remover.html">Remover</a></h2>
-      <h2><a href="#" id="btnLogout">Sair</a></h2>
+      <div class="vertical-menu"> 
+        <a href="buscarindividual.html" class="nav-link">Buscar Registro Individual</a>
+        <a href="buscartodos.html" class="nav-link">Buscar Todos</a>
+        <a href="incluir.html" class="nav-link">Incluir</a>
+        <a href="alterar.html" class="nav-link">Alterar</a>
+        <a href="remover.html" class="nav-link">Remover</a>
+        <a href="#" id="btnLogout" class="nav-link">Sair</a>
+      </div>
     </div>
 
 

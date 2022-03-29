@@ -7,11 +7,15 @@
     <title>Cadastro de Usuários</title>
   </head>
   <body>
-    <div>
-      <div><label>Usuário: </label><input type="text" id="userlogin"></div>
-      <div><label>Senha: </label><input type="password" id="usersenha" ></div>
-      <div><button id="userbtnEntrar">Entrar</button></div>
-      <div id="msgfail" style="color: red;"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-6 offset-sm-3">
+          <div><label>Usuário: </label><input type="text" id="userlogin" class="form-control"></div>
+          <div><label>Senha: </label><input type="password" id="usersenha" class="form-control"></div>
+          <div><button id="userbtnEntrar" class="btn btn-primary">Entrar</button></div>
+          <div id="msgfail" style="color: red;"></div>
+        </div>
+      </div>
     </div>
 
     <script type="text/javascript" src="bs/js/bootstrap.bundle.min.js"></script>

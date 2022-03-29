@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+	var $endpoint = "13.89.49.82";
+
+
 	var page = location.pathname.split('/').slice(-1)[0];
 	if (page!="" && page!="index.html"){
 		var logado = $.session.get('logado');
@@ -26,7 +29,7 @@ $(document).ready(function(){
 		}else{
 			$.ajax({
 			  method: "POST",
-			  url: "http://localhost:8080/Home/",
+			  url: "http://"+$endpoint+":8080/Home/",
 			  contentType: "application/json",
 		  	  data: JSON.stringify({ login: user, senha: pass})
 			}).done(function( msg ) {
@@ -46,7 +49,7 @@ $(document).ready(function(){
 			alert("Informe um valor Numérico");
 		}
 		else{
-			$.getJSON("http://localhost:8080/User/"+idUser, function(data){
+			$.getJSON("http://"+$endpoint+":8080/User/"+idUser, function(data){
 
 				$("#resUser").text("").append("<ul>");
 				$.each(data, function(key, val){
@@ -60,7 +63,7 @@ $(document).ready(function(){
 	});
 
 	$("#btnUsers").click(function(){
-		$.getJSON("http://localhost:8080/Users", function(data){
+		$.getJSON("http://"+$endpoint+":8080/Users", function(data){
 			$("#resUsers").text("").append("<ul>");
 			for(let i=0;i<data.length;i++){
 				$("#resUsers").append("<li>"+"Id:"+data[i][0]+"</li>");
@@ -82,7 +85,7 @@ $(document).ready(function(){
 		}else{
 			$.ajax({
 			  method: "DELETE",
-			  url: "http://localhost:8080/User/"+idUser,
+			  url: "http://"+$endpoint+":8080/User/"+idUser,
 			}).done(function( msg ) {
 			  alert("Dados Removidos!");
 			});
@@ -97,7 +100,7 @@ $(document).ready(function(){
 
 		$.ajax({
 		  method: "POST",
-		  url: "http://localhost:8080/User/",
+		  url: "http://"+$endpoint+":8080/User/",
 		  contentType: "application/json",
 		  data: JSON.stringify({ nome: vnome, sobrenome: vsobrenome, endereco: vendereco, cidade: vcidade })
 		}).done(function( msg ) {
@@ -114,7 +117,7 @@ $(document).ready(function(){
 
 		$.ajax({
 		  method: "PUT",
-		  url: "http://localhost:8080/User/"+vid,
+		  url: "http://"+$endpoint+":8080/User/"+vid,
 		  contentType: "application/json",
 		  data: JSON.stringify({ nome: vnome, sobrenome: vsobrenome, endereco: vendereco, cidade: vcidade })
 		}).done(function( msg ) {

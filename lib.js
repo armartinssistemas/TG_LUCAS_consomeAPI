@@ -1,6 +1,6 @@
 $(document).ready(function(){ 
 
-	var $endpoint = "13.89.49.82";
+	var $endpoint = "34.202.236.42";
 
 
 	var page = location.pathname.split('/').slice(-1)[0];
@@ -53,24 +53,28 @@ $(document).ready(function(){
 
 				$("#resUser").text("").append("<ul>");
 				$.each(data, function(key, val){
-					$("#resUser").append("<li>"+key+":"+val+"</li>");
+					if (key != "senha")
+						$("#resUser").append("<li><b>"+key+"</b> :"+val+"</li>");
 				});
 				$("#resUser").append("</ul>");
+
 			}).fail(function(){
 				alert("Registro não encontrado!");
 			})
 		}	
 	});
 
+    //Buscar Todos
 	$("#btnUsers").click(function(){
 		$.getJSON("http://"+$endpoint+":8080/Users", function(data){
 			$("#resUsers").text("").append("<ul>");
 			for(let i=0;i<data.length;i++){
-				$("#resUsers").append("<li>"+"Id:"+data[i][0]+"</li>");
-				$("#resUsers").append("<li>"+"Nome:"+data[i][1]+"</li>");
-				$("#resUsers").append("<li>"+"Sobrenome:"+data[i][2]+"</li>");
-				$("#resUsers").append("<li>"+"Endereço:"+data[i][3]+"</li>");
-				$("#resUsers").append("<li>"+"Cidade:"+data[i][4]+"</li>");
+				$("#resUsers").append("<li>"+"<b>Id:</b> "+data[i][0]+"</li>");
+				$("#resUsers").append("<li>"+"<b>Nome:</b> "+data[i][4]+"</li>");
+				$("#resUsers").append("<li>"+"<b>Sobrenome:</b> "+data[i][6]+"</li>");
+				$("#resUsers").append("<li>"+"<b>Login:</b> "+data[i][3]+"</li>");
+				$("#resUsers").append("<li>"+"<b>Endereço:</b> "+data[i][2]+"</li>");
+				$("#resUsers").append("<li>"+"<b>Cidade:</b> "+data[i][1]+"</li>");
 			}
 			$("#resUser").append("</ul>");
 		})	
@@ -92,36 +96,103 @@ $(document).ready(function(){
 		}
 	});
 
+	//Incluir registro
 	$("#btnInserir").click(function(){
-		var vnome = $("#nomeInserir").val();
-		var vsobrenome = $("#sobrenomeInserir").val();
-		var vendereco = $("#enderecoInserir").val();
-		var vcidade = $("#cidadeInserir").val();
+		var vnome = $("#nomeInserir");
+		var vsobrenome = $("#sobrenomeInserir");
+		var vendereco = $("#enderecoInserir");
+		var vcidade = $("#cidadeInserir");
+		var vlogin = $("#loginInserir");
+		var vsenha = $("#senhaInserir");
 
-		$.ajax({
-		  method: "POST",
-		  url: "http://"+$endpoint+":8080/User/",
-		  contentType: "application/json",
-		  data: JSON.stringify({ nome: vnome, sobrenome: vsobrenome, endereco: vendereco, cidade: vcidade })
-		}).done(function( msg ) {
-		  alert("Dados Incluídos!");
-		});
+		if (vnome.val() == ""){
+			alert("Informe o nome!")
+		}else if (vsobrenome.val() == ""){
+			alert("Informe o sobrenome!")
+		}else if (vendereco.val() == ""){
+			alert("Informe o endereço!")
+		}else if (vcidade.val() == ""){
+			alert("Informe a cidade!")
+		}else if (vlogin.val() == ""){
+			alert("Informe o login!")
+		}else if (vsenha.val() == ""){
+			alert("Informe a senha!")
+		}else{
+			$.ajax({
+			  method: "POST",
+			  url: "http://"+$endpoint+":8080/User/",
+			  contentType: "application/json",
+			  data: JSON.stringify(
+			  	{ 
+			      nome: vnome.val(), 
+			      sobrenome: vsobrenome.val(), 
+			  	  endereco: vendereco.val(), 
+			  	  cidade: vcidade.val(), 
+			  	  login: vlogin.val(), 
+			  	  senha: vsenha.val()
+			  	}
+			  )
+			}).done(function( msg ) {
+				vnome.val(""), 
+			    vsobrenome.val(""), 
+			  	vendereco.val(""), 
+			  	vcidade.val(""), 
+			  	vlogin.val(""), 
+			  	vsenha.val("")
+			  	alert("Dados Incluídos!");
+			});
+		}
 	});
 
+	//Alterar Registro
 	$("#btnAtualizar").click(function(){
-		var vid = $("#idAtualizar").val();
-		var vnome = $("#nomeAtualizar").val();
-		var vsobrenome = $("#sobrenomeAtualizar").val();
-		var vendereco = $("#enderecoAtualizar").val();
-		var vcidade = $("#cidadeAtualizar").val();
+		var vid = $("#idAtualizar");
+		var vnome = $("#nomeAtualizar");
+		var vsobrenome = $("#sobrenomeAtualizar");
+		var vendereco = $("#enderecoAtualizar");
+		var vcidade = $("#cidadeAtualizar");
+		var vlogin = $("#loginAtualizar");
+		var vsenha = $("#senhaAtualizar");
 
-		$.ajax({
-		  method: "PUT",
-		  url: "http://"+$endpoint+":8080/User/"+vid,
-		  contentType: "application/json",
-		  data: JSON.stringify({ nome: vnome, sobrenome: vsobrenome, endereco: vendereco, cidade: vcidade })
-		}).done(function( msg ) {
-		    alert("Dados Atualizados!");
-		});
+		if (vid.val() == ""){
+			alert("Informe o ID");
+		}else if (vnome.val() == ""){
+			alert("Informe o Nome");
+		}else if (vnome.val() == ""){
+			alert("Informe o Sobrenome");
+		}else if (vnome.val() == ""){
+			alert("Informe o Endereço");
+		}else if (vnome.val() == ""){
+			alert("Informe a Cidade");
+		}else if (vnome.val() == ""){
+			alert("Informe o Login");
+		}else if (vnome.val() == ""){
+			alert("Informe a Senha");
+		}else{
+
+			$.ajax({
+			  method: "PUT",
+			  url: "http://"+$endpoint+":8080/User/"+vid,
+			  contentType: "application/json",
+			  data: JSON.stringify(
+			  	{ 
+			  		nome: vnome.val(), 
+			  	  	sobrenome: vsobrenome.val(), 
+			  	  	endereco: vendereco.val(), 
+			  	  	cidade: vcidade.val(), 
+			  	    login: vlogin.val(), 
+			  	    senha: vsenha.val() 
+			  	}
+			  )
+			}).done(function( msg ) {
+				vnome.val(""), 
+			  	vsobrenome.val(""), 
+			  	vendereco.val(""), 
+			  	vcidade.val(""), 
+			  	vlogin.val(""), 
+			  	vsenha.val("") 
+			    alert("Dados Atualizados!");
+			});
+		}
 	});
 });

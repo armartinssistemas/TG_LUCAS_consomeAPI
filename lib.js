@@ -172,7 +172,7 @@ $(document).ready(function(){
 
 			$.ajax({
 			  method: "PUT",
-			  url: "http://"+$endpoint+":8080/User/"+vid,
+			  url: "http://"+$endpoint+":8080/User/"+vid.val(),
 			  contentType: "application/json",
 			  data: JSON.stringify(
 			  	{ 
